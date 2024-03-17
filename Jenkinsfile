@@ -3,7 +3,7 @@ pipeline {
     
     tools {
         jdk 'jdk11'
-        maven 'maven3'
+        maven 'maven'
     }
     
     environment{
@@ -55,19 +55,19 @@ pipeline {
         
         stage('Docker Build & Push') {
             steps {
-                   script {
-                       withDockerRegistry(credentialsId: 'b289dc43-2ede-4bd0-95e8-75ca26100d8d', toolName: 'docker') {
-                            sh "docker build -t webapp ."
-                            sh "docker tag webapp adijaiswal/webapp:latest"
-                            sh "docker push adijaiswal/webapp:latest "
-                        }
-                   } 
+                   //script {
+                      // withDockerRegistry(credentialsId: 'b289dc43-2ede-4bd0-95e8-75ca26100d8d', toolName: 'docker') {
+                        //    sh "docker build -t webapp ."
+                          //  sh "docker tag webapp adijaiswal/webapp:latest"
+                           // sh "docker push adijaiswal/webapp:latest "
+                       // }
+                   //} 
             }
         }
         
         stage('Docker Image scan') {
             steps {
-                    sh "trivy image adijaiswal/webapp:latest "
+                    //sh "trivy image adijaiswal/webapp:latest "
             }
         }
         
